@@ -16,9 +16,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: compose-run
         shell: bash
-        env:
-          ENVENV1: ${{ secrets.ENVENV1 }}
-          ENVENV2: ${{ secrets.ENVENV2 }}
+        # env:
+        #   ENVENV1: ${{ secrets.ENVENV1 }}
+        #   ENVENV2: ${{ secrets.ENVENV2 }}
         run: |
           docker-compose up -d
-          docker-compose exec -T app bash xxxxxxxx.sh
+        #   docker-compose exec -T app bash xxxxxxxx.sh
