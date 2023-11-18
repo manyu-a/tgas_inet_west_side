@@ -1,22 +1,31 @@
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="6">ガス総使用量</font>
-</div>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="6">電力総使用量</font>
-</div>
+<head>
+    <link href="./style.css" rel="stylesheet" />
+    <script src="./main.js"></script>
+</head>
 
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="5">家電１：使用料：使用%：使用円</font>
-</div>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="5">家電２：使用料：使用%：使用円</font>
-</div>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="5">家電３：使用料：使用%：使用円</font>
-</div>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="5">家電４：使用料：使用%：使用円</font>
-</div>
-<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <font size="5">家電５：使用料：使用%：使用円</font>
-</div>
+<body>
+    <div id="total_gas" class="item">
+        <font size="6">ガス総使用量</font>
+    </div>
+    <div id="total_elec"  class="item">
+        <font size="6">電力総使用量</font>
+    </div>
+
+    <div class="elec_wrapper">
+    <p id="elec1" class="item" >
+        <font size="5">冷蔵庫：使用料：40%：円</font>
+    </p>
+    <p id="elec2"class="item" >
+        <font size="5">エアコン：使用料：30%：使用円</font>
+    </p>
+    <p id="elec3"class="item" >
+        <font size="5">電子レンジ：使用料：20%：使用円</font>
+    </p>
+    <p id="elec4"class="item" >
+        <font size="5">ドライヤー：使用料：7%：使用円</font>
+    </p>
+    <p id="elec5"class="item" >
+        <font size="5">掃除機：使用料：3%：使用円</font>
+    </p>
+    </div>
+</body>
