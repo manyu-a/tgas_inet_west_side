@@ -29,6 +29,23 @@ function change(){
 function test(){
     total_gas=300
     total_elec=500
-    elec_list=["冷蔵庫：使用料：50%：円","エアコン：使用料：25%：使用円","電子レンジ：使用料：15%：使用円","ドライヤー：使用料：6%：使用円","掃除機：使用料：4%：使用円"];
+    elec_list=["冷蔵庫：使用量：50%：円","エアコン：使用量：25%：使用円","電子レンジ：使用量：15%：使用円","ドライヤー：使用量：6%：使用円","掃除機：使用量：4%：使用円"];
     change();
 }
+
+//restAPI
+async function callApi() {
+    for(let i=0;i<5;i++){
+        let res = await fetch(`http://127.0.0.1:8000/wat_${i}`)
+            .then(result => result.json())
+            .then((output) => {
+                console.log('Output: ', output);
+                let wat_full = output["full"];
+                let wat_per = output["per"];
+                let wat_yen = output["yen"];
+                let wat_name= output["name"];
+                elec_list[i]=wat_name+"　使用量："+wat_full+"kwh　使用%："+"%　使用円："+wat_yen+"円"
+                console.log( String(tmpVal) );
+            }).catch(err => console.error(err));
+    }
+  };
