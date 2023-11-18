@@ -1,9 +1,48 @@
-version: "3"
+version: '3'
+
 services:
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    ports:
-      - "8080:8080"
-    volumes:
-    - ./web/conf.d:/etc/nginx/conf.d
+    web:
+        container_name: web
+        image: nginx:alpine
+        depends_on:
+            - app
+            - vue
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./web/conf.d:/etc/nginx/conf.d
+        networks:
+            - backend_network
+
+    app:
+        container_name: app
+        image: fastapi_app
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        ports:
+            - "8001:8080"
+        networks:
+            - backend_network
+        volumes:
+            - ./app/content:/app
+        command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
+
+    vue:
+        container_name: vue
+        image: vue_app
+        build:
+            context: ./vue
+            dockerfile: Dockerfile
+        ports:
+            - "8002:8080"
+        networks:
+            - backend_network
+        volumes:
+            - ./vue/content:/app
+        working_dir: /app/myapp
+        command: yarn serve --port 8080
+
+networks:
+    backend_network:
+        driver: bridge
