@@ -9,22 +9,21 @@ class DummyWatChecker:
         self.randLeft = randLeft
         self.randRight = randRight
         self.incValue = incValue
-        self.timerstart()
+        self.thread = threading.Timer(1, self.random_change)
+        self.thread.start()
+        self.exitFlag = False
 
     def random_change(self):
-        while True:
+        while not self.exitFlag:
             self.amount = random.randint(self.randLeft, self.randRight)
             # print(self.amount)
             time.sleep(10)
     
     def inc_change(self):
-        while True:
+        while not self.exitFlag:
             self.amount += self.incValue
             time.sleep(10)
-
-    def timerstart(self):
-        thread = threading.Timer(1, self.random_change)
-        thread.start()
+        
 
 whole_wat_checker = DummyWatChecker(0, 1, 400, 600, 4)
 tv_wat_checker = DummyWatChecker(1, 0, 50, 100, 1)
@@ -37,7 +36,18 @@ gas_checker = DummyWatChecker(-1, 0, 100, 500, 1)
 
     
 while True:
-    input()
+    op = input()
+    if op == "exit":
+        whole_wat_checker.exitFlag = True
+        for wat_checker in wat_checker_list:
+            wat_checker.exitFlag = True
+        gas_checker.exitFlag = True
+        
+        whole_wat_checker.thread.join()
+        for wat_checker in wat_checker_list:
+            wat_checker.thread.join()
+        gas_checker.thread.join()
+        break
     print("id: ",whole_wat_checker.id,", value: ",whole_wat_checker.amount)
     for wat_checker in wat_checker_list:
         ratio = wat_checker.amount / whole_wat_checker.amount
