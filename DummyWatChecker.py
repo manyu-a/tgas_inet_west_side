@@ -2,8 +2,6 @@ import time
 import random
 import threading
 
-
-
 class DummyWatChecker:
     def __init__(self, id: int, amount: int, randLeft: int, randRight: int, incValue: int):
         self.id = id
@@ -16,7 +14,7 @@ class DummyWatChecker:
     def random_change(self):
         while True:
             self.amount = random.randint(self.randLeft, self.randRight)
-            print(self.amount)
+            # print(self.amount)
             time.sleep(10)
     
     def inc_change(self):
@@ -40,9 +38,9 @@ gas_checker = DummyWatChecker(-1, 0, 100, 500, 1)
     
 while True:
     input()
-    print("id: " + whole_wat_checker.id + ", value: " + whole_wat_checker.amount)
+    print("id: ",whole_wat_checker.id,", value: ",whole_wat_checker.amount)
     for wat_checker in wat_checker_list:
         ratio = wat_checker.amount / whole_wat_checker.amount
-        print("id: " + wat_checker.id + ", value: " + wat_checker.amount + ", " + ratio + "%")
-    print("id: " + gas_checker.id + ", value: " + gas_checker.amount)
+        print("id: ",wat_checker.id, ", value: ", wat_checker.amount, ", ", ratio, "%")
+    print("id: ", gas_checker.id, ", value: ", gas_checker.amount)
     
