@@ -22,9 +22,9 @@ function change(){
     document.getElementById("total_gas").innerHTML=`ガス総使用量：${total_gas}`;
     document.getElementById("total_elec").innerHTML=`電力総使用量：${total_elec}`;
     
-    for(let i=0;i<5;i++){
+    for(let i=1;i<=5;i++){
         console.log(`elec${i}`);
-        document.getElementById(`elec${i+1}`).innerHTML=elec_list[i];
+        document.getElementById(`elec${i}`).innerHTML=elec_list[i];
     }
 }
 function test(){
@@ -39,8 +39,8 @@ function test(){
 //restAPI
 async function callApi() {
     console.log("callApi");
-    for(let i=0;i<5;i++){
-        let res = await fetch(`http://localhost:8000/api/wat_${i}`,{
+    for(let i=1;i<=5;i++){
+        let res = await fetch(`http://localhost:8080/api/wat_${i}`,{
             method: "POST"
         })
             .then(result => result.json())
