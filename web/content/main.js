@@ -53,7 +53,7 @@ async function callApi() {
 
   async function helloApi() {
     for(let i=0;i<5;i++){
-        let res = await fetch(`http://localhost:8080/api`)
+        let res = await fetch(`http://localhost:8080/api/wat_full`)
             .then(result => result.json())
             .then((output) => {
                 console.log('Output: ', output);
