@@ -64,11 +64,13 @@ def gas_full():
 def wat_other():
     all_checker_amount = 0
     for checker_element in checker.keys():
-        if (checker_element > 0):
+        if (checker_element <= 0):
             continue
+        
         all_checker_amount += checker[checker_element].amount
-    return { "id": -2, "full": all_checker_amount, "per": ((all_checker_amount * 1000) // checker[0].amount) / 10,
-            "yen": all_checker_amount * yen_per_wat, "name": "その他" }
+    other_amount = whole_wat_checker.amount - all_checker_amount
+    return { "id": -2, "full": other_amount, "per": ((other_amount * 1000) // checker[0].amount) / 10,
+            "yen": other_amount * yen_per_wat, "name": "その他" }
 
 @app.post("/api/wat_{id}")
 def wat_all(id : int):
