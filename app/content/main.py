@@ -11,6 +11,9 @@ stove_wat_checker = DummyWatChecker(4, 0, 50, 100, 1)
 gas_checker = DummyWatChecker(-1, 0, 100, 500, 1)
 checker = {0: whole_wat_checker, 1: tv_wat_checker, 2: airCon_wat_checker,
            3: oven_wat_checker, 4: stove_wat_checker, -1: gas_checker}
+name = {1: "TV", 2: "エアコン", 3: "オーブン", 4: "ストーブ"}
+yen_per_wat = 20
+yen_per_gas = 215
 
 class User(BaseModel):
     name: str
@@ -30,20 +33,10 @@ def greetings(user: User):
 
 @app.post("/api/wat_full")
 def wat_full():
-    return { "id": whole_wat_checker.id, "full" : whole_wat_checker.amount}
+    return { "id": whole_wat_checker.id, "full": whole_wat_checker.amount}
 
 @app.post("/api/wat_1")
 def wat_1():
-    return { "id": checker[1].id, "amount" : checker[1].amount}
-
-@app.post("/api/all_checker")
-def all_checker():
-    send_json = {}
-    send_json[0] = {"id": checker[0].id, "amount": checker[0].amount}
-    for checker_element in checker.keys():
-        if checker_element > 0:
-            send_json[checker_element] = {"id": checker[checker_element].id, "amount": checker[checker_element].amount,
-                                          "ratio": checker[checker_element].amount / checker[0].amount}
-    send_json[-1] = {"id": checker[-1].id, "amount": checker[-1].amount}
-    return send_json
+    return { "id": checker[1].id, "full": checker[1].amount, "per": checker[1].amount / checker[0].amount,
+            "yen": checker[1].amount * yen_per_wat, "name": name[1]}
 
