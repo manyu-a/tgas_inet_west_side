@@ -81,14 +81,5 @@ async function callApi() {
     change();
   };
 
-  async function helloApi() {
-    for(let i=0;i<5;i++){
-        let res = await fetch(`http://localhost:8080/api`)
-            .then(result => result.json())
-            .then((output) => {
-                console.log('Output: ', output);
-                let wat_full = output["Hello"];
-                console.log( String(wat_full) );
-            }).catch(err => console.error(err));
-    }
-  };
+
+  
