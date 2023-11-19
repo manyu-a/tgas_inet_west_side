@@ -1,0 +1,57 @@
+#elec1 {
+    color: rgb(255, 0, 0); /* 赤 */
+}
+
+#elec2 {
+    color: rgb(255, 102, 0); /* オレンジ色っぽい色 */
+}
+
+#elec3 {
+    color: rgb(128, 0, 128); /* 真ん中の色（パープル/マゼンタ） */
+}
+
+#elec4 {
+    color: rgb(85, 0, 255); /* 青に近い紫色 */
+}
+
+#elec5 {
+    color: rgb(0, 0, 255); /* 青 */
+}
+
+.item{
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 2px solid #333333; 
+    border-radius: 10px;
+    width: 700px;
+    text-align: center;
+}
+
+.time{
+    font-size: 30px;
+}
+
+.asa,.hiru,.yoru{
+    font-size: 25px;
+}
+
+#elec1{
+    font-size: 30px;
+}
+
+#total_gas,#total_elec{
+    font-size: 40px;
+}
+
+#asa{
+    color: rgb(255, 0, 0); 
+}
+
+#hiru{
+    color: rgb(255, 68, 0); 
+}
+
+#yoru{
+    color: rgb(55, 0, 255); 
+}
+

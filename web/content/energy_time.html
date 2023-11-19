@@ -1,0 +1,34 @@
+<html lang="ja">
+<head>
+    <link href="./style_time.css" rel="stylesheet" />
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <div id="total_gas" class="item">
+        ガス総使用量：30m<sup>3</sup>:6500円
+    </div>
+
+    <div id="total_elec"  class="item">
+        電力総使用量：400kWh：8000円
+    </div>
+
+    <div class="time">
+        <p button onclick="location.href='./asa.html'"  class="item" id="asa">
+            朝（3~11時）
+        </p>
+        <p button onclick="location.href='./hiru.html'" class="item" id="hiru">
+            昼（11~18時）
+        </p>
+        <p button onclick="location.href='./yoru.html'" class="item" id="yoru">
+            夜（18~3時）
+        </p>
+    </div>
+
+    <div class="update_time">
+        更新日時：17:53
+    </div>
+    
+    <input type="button" value="test" onclick="test()">
+</body>
+</html>
