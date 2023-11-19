@@ -1,9 +1,12 @@
 var total_gas=0;
 var total_elec=0;
-
+var elec_other=0;
 
 var elec_list=[];
-
+var  elec_list= new Array(6); //要素数5の配列(array)を作成
+for(let y = 0; y < 6; y++) {
+  array[y] = new Array(2).fill(0); //配列(array)の各要素に対して、要素数5の配列を作成し、0で初期化
+}
 window.addEventListener('DOMContentLoaded', function() {
     console.log("laoded");
 
@@ -20,13 +23,13 @@ window.addEventListener('DOMContentLoaded', function() {
 
 function change(){
     console.log("change");
-    document.getElementById("total_gas").innerHTML=`total_gas`;
-    document.getElementById("total_elec").innerHTML=`total_elec`;
+    document.getElementById("total_gas").innerHTML=total_gas;
+    document.getElementById("total_elec").innerHTML=total_elec;
+    document.getElementById("other").innerHTML=elec_other;
     
-    
-    for(let i=1;i<=5;i++){
+    for(let i=1;i<=elec_list.length;i++){
         console.log(`elec${i}`);
-        document.getElementById(`elec${i}`).innerHTML=elec_list[i];
+        document.getElementById(`elec${i}`).innerHTML=elec_list[i][1];
     }
 }
 function test(){
@@ -74,10 +77,28 @@ async function callApi() {
                 let wat_per = output["per"];
                 let wat_yen = output["yen"];
                 let wat_name= output["name"];
-                elec_list[i]=wat_name+"："+wat_full+"kwh："+wat_per+"%："+wat_yen+"円";
-                console.log( elec_list[i] );
+                elec_list[i][0]=wat_full;
+                elec_list[i][1]=wat_name+"："+wat_full+"kwh："+wat_per+"%："+wat_yen+"円";
+                console.log( elec_list[i][1] );
             }).catch(err => console.error(err));
+            
     }
+
+    elec_list.sort(function(a,b){return(b[0] - a[0]);});//sort
+
+    let res_elec_other = await fetch(`http://localhost:8080/api/wat_other`,{
+            method: "POST"
+        })
+            .then(result => result.json())
+            .then((output) => {
+                console.log('Output: ', output);
+                let wat_full = output["full"];
+                let wat_per = output["per"];
+                let wat_yen = output["yen"];
+                let wat_name= output["name"];
+                elec_other=wat_name+"："+wat_full+"kwh："+wat_per+"%："+wat_yen+"円";
+                console.log(elec_other);
+            }).catch(err => console.error(err));
     change();
   };
 
