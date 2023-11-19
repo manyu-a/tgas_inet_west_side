@@ -14,7 +14,7 @@ checker = {0: whole_wat_checker, 1: tv_wat_checker, 2: airCon_wat_checker,
            3: oven_wat_checker, 4: stove_wat_checker, 5: refrigerator_wat_checker, -1: gas_checker}
 name = {1: "TV", 2: "エアコン", 3: "オーブン", 4: "ストーブ", 5: "冷蔵庫"}
 yen_per_wat = 20
-yen_per_gas = 215
+yen_per_gas = 20
 
 class User(BaseModel):
     name: str
@@ -37,11 +37,11 @@ def greetings(user: User):
 
 @app.post("/api/gas_full")
 def gas_full():
-    return { "id": gas_checker.id, "full": gas_checker.amount}
+    return { "id": gas_checker.id, "full": gas_checker.amount, "yen": gas_checker.amount * yen_per_gas }
 
-@app.post("/api/gas_full")
+@app.post("/api/wat_full")
 def gas_full():
-    return { "id": gas_checker.id, "full": gas_checker.amount}
+    return { "id": whole_wat_checker.id, "full": whole_wat_checker.amount, "yen": whole_wat_checker.amount * yen_per_wat}
 
 @app.post("/api/wat_{id}")
 def wat_all(id : int):

@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log("laoded");
 
     
-    setInterval(callApi,30000);
+    setInterval(callApi,5000);
 
     
    
@@ -20,8 +20,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
 function change(){
     console.log("change");
-    document.getElementById("total_gas").innerHTML=`total_gas`;
-    document.getElementById("total_elec").innerHTML=`total_elec`;
+    document.getElementById("total_gas").innerHTML=total_gas;
+    document.getElementById("total_elec").innerHTML=total_elec;
     
     
     for(let i=1;i<=5;i++){
