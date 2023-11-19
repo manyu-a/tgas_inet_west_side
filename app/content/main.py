@@ -42,7 +42,7 @@ def gas_full():
 
 @app.post("/api/wat_{id}")
 def wat_all(id : int):
-    return { "id": checker[id].id, "full": checker[id].amount, "per": (checker[id].amount * 1000) / checker[0].amount / 10,
+    return { "id": checker[id].id, "full": checker[id].amount, "per": ((checker[id].amount * 1000) // checker[0].amount) / 10,
             "yen": checker[id].amount * yen_per_wat, "name": name[id]}
 
 @app.post("/api/wat_other")
@@ -52,6 +52,6 @@ def wat_other():
         if (checker_element > 0):
             continue
         all_checker_amount += checker[checker_element].amount
-    return { "id": -2, "full": all_checker_amount, "per": (all_checker_amount * 1000) / checker[0].amount / 10,
+    return { "id": -2, "full": all_checker_amount, "per": ((all_checker_amount * 1000) // checker[0].amount) / 10,
             "yen": all_checker_amount * yen_per_wat, "name": "その他"}
 
