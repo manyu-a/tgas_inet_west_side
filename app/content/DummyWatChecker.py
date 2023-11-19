@@ -17,12 +17,12 @@ class DummyWatChecker:
         while not self.exitFlag:
             self.amount = random.randint(self.randLeft, self.randRight)
             # print(self.amount)
-            time.sleep(10)
+            time.sleep(1)
     
     def inc_change(self):
         while not self.exitFlag:
             self.amount += self.incValue
-            time.sleep(10)
+            time.sleep(1)
         
 
 # ファイルを直接実行時のみ実行される(import DummyWatChecker.py で実行されない)
