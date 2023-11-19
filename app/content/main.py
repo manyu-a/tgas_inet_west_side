@@ -36,8 +36,22 @@ def greetings(user: User):
 def wat_full():
     return { "id": whole_wat_checker.id, "full": whole_wat_checker.amount}
 
+@app.post("/api/gas_full")
+def gas_full():
+    return { "id": gas_checker.id, "full": gas_checker.amount}
+
 @app.post("/api/wat_{id}")
 def wat_all(id : int):
-    return { "id": checker[id].id, "full": checker[id].amount, "per": checker[id].amount / checker[0].amount,
+    return { "id": checker[id].id, "full": checker[id].amount, "per": (checker[id].amount * 1000) / checker[0].amount / 10,
             "yen": checker[id].amount * yen_per_wat, "name": name[id]}
+
+@app.post("/api/wat_other")
+def wat_other():
+    all_checker_amount = 0
+    for checker_element in checker.keys():
+        if (checker_element > 0):
+            continue
+        all_checker_amount += checker[checker_element].amount
+    return { "id": -2, "full": all_checker_amount, "per": (all_checker_amount * 1000) / checker[0].amount / 10,
+            "yen": all_checker_amount * yen_per_wat, "name": "その他"}
 
