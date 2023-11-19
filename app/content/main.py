@@ -21,5 +21,6 @@ def greetings(user: User):
 
 @app.post("/api/wat_full")
 def wat_full():
-    whole_wat_checker = DummyWatChecker(0, 1, 400, 600, 4)
     return { "id:": whole_wat_checker.id, "full" : whole_wat_checker.amount}
+
+whole_wat_checker = DummyWatChecker(0, 1, 400, 600, 4)
