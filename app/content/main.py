@@ -35,8 +35,8 @@ def greetings(user: User):
 def wat_full():
     return { "id": whole_wat_checker.id, "full": whole_wat_checker.amount}
 
-@app.post("/api/wat_1")
-def wat_1():
-    return { "id": checker[1].id, "full": checker[1].amount, "per": checker[1].amount / checker[0].amount,
-            "yen": checker[1].amount * yen_per_wat, "name": name[1]}
+@app.post("/api/wat_{id}")
+def wat_all(id : int):
+    return { "id": checker[id].id, "full": checker[id].amount, "per": checker[id].amount / checker[0].amount,
+            "yen": checker[id].amount * yen_per_wat, "name": name[id]}
 
