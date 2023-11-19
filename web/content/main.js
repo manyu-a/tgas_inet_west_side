@@ -28,19 +28,21 @@ function LoadProc() {
     var Hour = now.getHours();
     var Min = now.getMinutes();
     justnow="更新日時："+Hour+":"+Min
-    document.getElementsByClassName("update_time").innerHTML=justnow
+    document.getElementsByClassName("update_time")[0].innerHTML=justnow
 }
   
 
 function change(){
     console.log("change");
     document.getElementById("total_gas").innerHTML=total_gas;
-    document.getElementById("total_elec").innerHTML=total_elec;
-    document.getElementById("other").innerHTML=elec_other;
+    document.getElementById("total_elec").innerHTML=total_elec
+    if(document.getElementById("other") != null){
+        document.getElementById("other").innerHTML=elec_other;
     
-    for(let i=1;i<=5;i++){
-        console.log(`elec${i}`);
-        document.getElementById(`elec${i}`).innerHTML=elec_list[i][1];
+        for(let i=1;i<=5;i++){
+            console.log(`elec${i}`);
+            document.getElementById(`elec${i}`).innerHTML=elec_list[i][1];
+        }
     }
     LoadProc();
 }

@@ -33,7 +33,7 @@ function LoadProc() {
   var Hour = now.getHours();
   var Min = now.getMinutes();
   justnow="更新日時："+Hour+":"+Min;
-  document.getElementsByClassName("update_time").innerHTML=justnow;
+  document.getElementsByClassName("update_time")[0].innerHTML=justnow;
 }
 
 
@@ -69,8 +69,8 @@ async function callApi() {
             .then(result => result.json())
             .then((output) => {
                 console.log('Output: ', output);
-                let gas_full = output["amount"];
-                let gas_per  = output["rate"];
+                let gas_full = output["full"];
+                let gas_per  = output["per"];
                 total_gas="ガス使用割合："+gas_full+"m³："+gas_per+"%";
                 console.log(total_gas);
             }).catch(err => console.error(err));
@@ -80,8 +80,8 @@ async function callApi() {
             .then(result => result.json())
             .then((output) => {
                 console.log('Output: ', output);
-                let wat_full = output["amount"];
-                let wat_per = output["rate"];
+                let wat_full = output["full"];
+                let wat_per = output["per"];
                 total_elec="電力使用割合："+wat_full+"kWh："+wat_per+"%";
                 console.log(total_elec);
             }).catch(err => console.error(err));

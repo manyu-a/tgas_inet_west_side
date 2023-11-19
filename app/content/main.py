@@ -76,12 +76,12 @@ def wat_all(id : int):
 
 @app.post("/api/elec_total_hour{hour}")
 def elec_total_hour(hour: int):
-    return { "id": id, "full": hour_dict[0][hour], "per": ((hour_dict[0][hour] * 1000) // sum(hour_dict[0])) / 10,
+    return { "id": 0, "full": hour_dict[0][hour], "per": ((hour_dict[0][hour] * 1000) // sum(hour_dict[0])) / 10,
             "yen": hour_dict[0][hour] * yen_per_wat_hour[hour]}
     
 @app.post("/api/gas_total_hour{hour}")
 def gas_total_hour(hour: int):
-    return { "id": id, "full": hour_dict[-1][hour], "per": ((hour_dict[-1][hour] * 1000) // sum(hour_dict[-1])) / 10,
+    return { "id": -1, "full": hour_dict[-1][hour], "per": ((hour_dict[-1][hour] * 1000) // sum(hour_dict[-1])) / 10,
             "yen": hour_dict[-1][hour] * yen_per_gas}
 
 @app.post("/api/elec_hour{hour}_wat_{id}")
