@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', function() {
 })
 
 function change(){
+    console.log("change");
     document.getElementById("total_gas").innerHTML=`ガス総使用量：${total_gas}`;
     document.getElementById("total_elec").innerHTML=`電力総使用量：${total_elec}`;
     
@@ -27,17 +28,21 @@ function change(){
     }
 }
 function test(){
-    total_gas=300
-    total_elec=500
-    elec_list=["冷蔵庫：50%：4000円","エアコン：25%：3000円","電子レンジ：15%：使用円","ドライヤー：使用量：6%：使用円","掃除機：使用量：4%：使用円"];
-    change();
+    // total_gas=300
+    // total_elec=500
+    // elec_list=["冷蔵庫：50%：4000円","エアコン：25%：3000円","電子レンジ：15%：使用円","ドライヤー：使用量：6%：使用円","掃除機：使用量：4%：使用円"];
+    console.log("callApi");
+    callApi();
     helloApi();
 }
 
 //restAPI
 async function callApi() {
+    console.log("callApi");
     for(let i=0;i<5;i++){
-        let res = await fetch(`http://127.0.0.1:8000/api/wat_${i}`)
+        let res = await fetch(`http://localhost:8000/api/wat_${i}`,{
+            method: "POST"
+        })
             .then(result => result.json())
             .then((output) => {
                 console.log('Output: ', output);
@@ -45,7 +50,7 @@ async function callApi() {
                 let wat_per = output["per"];
                 let wat_yen = output["yen"];
                 let wat_name= output["name"];
-                elec_list[i]=wat_name+"　使用量："+wat_full+"kwh　使用%："+"%　使用円："+wat_yen+"円"
+                elec_list[i]=wat_name+"："+wat_full+"kwh："+wat_per+"%："+wat_yen+"円";
                 console.log( String(tmpVal) );
             }).catch(err => console.error(err));
     }
