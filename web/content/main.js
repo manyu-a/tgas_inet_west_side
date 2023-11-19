@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log("laoded");
 
     
-    setInterval(callApi,300000);
+    setInterval(callApi,30000);
 
     
    
