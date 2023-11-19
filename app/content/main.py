@@ -34,7 +34,6 @@ def greetings(user: User):
     return { "message": f"こんにちは{user.name}さん" }
 
 
-
 @app.post("/api/wat_{id}")
 def wat_all(id : int):
     return { "id": checker[id].id, "full": checker[id].amount, "per": checker[id].amount / checker[0].amount,
