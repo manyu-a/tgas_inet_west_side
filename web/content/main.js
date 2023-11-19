@@ -1,8 +1,10 @@
 var total_gas=0;
 var total_elec=0;
 var elec_other=0;
+var now = new Date();
+var justnow;
 
-var elec_list=[];
+
 var  elec_list= new Array(6); //要素数5の配列(array)を作成
 for(let y = 0; y < 6; y++) {
   elec_list[y] = new Array(2).fill(0); //配列(array)の各要素に対して、要素数5の配列を作成し、0で初期化
@@ -11,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log("laoded");
 
     
-    setInterval(callApi,5000);
+    setInterval(callApi,300000);
 
     
    
@@ -21,18 +23,26 @@ window.addEventListener('DOMContentLoaded', function() {
     
 })
 
+function LoadProc() {
+  
+    var Hour = now.getHours();
+    var Min = now.getMinutes();
+    justnow="更新日時："+Hour+":"+Min
+    document.getElementsByClassName("update_time").innerHTML=justnow
+}
+  
+
 function change(){
     console.log("change");
     document.getElementById("total_gas").innerHTML=total_gas;
     document.getElementById("total_elec").innerHTML=total_elec;
     document.getElementById("other").innerHTML=elec_other;
     
-    for(let i=1;i<=elec_list.length-1;i++){
-        console.log(elec_list);
+    for(let i=1;i<=5;i++){
         console.log(`elec${i}`);
         document.getElementById(`elec${i}`).innerHTML=elec_list[i][1];
     }
-    document.getElementById(`other`).innerHTML= elec_other;
+    LoadProc();
 }
 function test(){
     // total_gas=300
